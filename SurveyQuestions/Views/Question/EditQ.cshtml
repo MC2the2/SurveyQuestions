@@ -1,0 +1,22 @@
+﻿@model Question
+@{
+    ViewBag.Title = "Edit Question";
+    Layout = "_AdminLayout";
+}
+<form asp-action="EditQ" method="post">
+    <input type="hidden" asp-for="QuestionNum" />
+    <div class="form-group">
+        <label asp-for="DomainNum"></label>
+        <div><span asp-validation-for="DomainNum" class="text-danger"></span></div>
+        <input asp-for="DomainNum" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Prompt"></label>
+        <div><span asp-validation-for="Prompt" class="text-danger"></span></div>
+        <textarea asp-for="Prompt" class="form-control"></textarea>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-default">Cancel</a>
+    </div>
+</form>

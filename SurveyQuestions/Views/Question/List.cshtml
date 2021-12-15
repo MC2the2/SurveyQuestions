@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Question>
+@{
+    ViewBag.Title = "View Questions";
+    Layout = "_AdminLayout";
+}
+    <button>Modify Title</button>
+    <label for="Title" :>Survey Title</label>
+    <input type="text" id="Title" name="Title">
+    <br /><br />
+    <div class="text-center">
+        <a asp-action="AddQ" class="btn btn-primary">Add Question</a>
+    </div>
+    <button>Add Multiple Questions</button>
+    <button type="submit"><a asp action="ViewDomains"></a>Domains</button>
+    <button type="submit"><a asp action="ViewSurveys"></a>Back</button>
+    <table class="table table-striped table-bordered table-condensed">
+        <tr>
+            <th class="text-right">Question Number</th>
+            <th>Domain Number</th>
+            <th class="text-right">Prompt</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td class="text-right">@question.QuestionNum</td>
+                <td>@question.DomainNum</td>
+                <td class="text-right">@question.Prompt</td>
+                <td class="text-center">
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="EditQ" class="btn btn-sm btn-warning"
+                           asp-route-questionNo="@question.QuestionNum">
+                            Edit
+                        </a>
+                        <input type="hidden" name="QuestionNo" value="@question.QuestionNum" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
